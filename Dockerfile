@@ -16,7 +16,6 @@ RUN uv venv venv --python 3.11 \
     && VIRTUAL_ENV=/opt/hermes-agent/venv uv pip install -e ".[all]"
 
 ENV PATH="/opt/hermes-agent/venv/bin:$PATH"
-RUN cd /opt/hermes-agent/web && npm install && npm run build
 
 # Signal to the Hermes CLI that npm deps are already installed so it does not
 # attempt a redundant `npm install` at container startup.

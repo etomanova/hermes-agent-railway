@@ -15,10 +15,6 @@ if [ "$AUTO_UPDATE" = "true" ]; then
   fi
 fi
 
-# npm deps were installed during the Docker build phase (web/node_modules already exists).
-# Setting HERMES_SKIP_NPM_INSTALL=1 prevents the dashboard command from attempting a
-# redundant `npm install` at container startup, which fails in the Railway runtime.
-export HERMES_SKIP_NPM_INSTALL=1
 hermes dashboard --host 127.0.0.1 --port 9119 --no-open &
 
 exec python /auth_proxy.py

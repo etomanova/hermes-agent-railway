@@ -18,10 +18,6 @@ RUN uv venv venv --python 3.11 \
 ENV PATH="/opt/hermes-agent/venv/bin:$PATH"
 RUN cd /opt/hermes-agent/web && npm install && npm run build
 
-# Signal to the Hermes CLI that npm deps are already installed so it does not
-# attempt a redundant `npm install` at container startup.
-ENV HERMES_SKIP_NPM_INSTALL=1
-
 RUN mkdir -p /root/.hermes/{cron,sessions,logs,memories,skills,pairing,hooks,image_cache,audio_cache} \
     && cp cli-config.yaml.example /root/.hermes/config.yaml \
     && touch /root/.hermes/.env
